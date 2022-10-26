@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Avtotest</h1>
+    <p>Online test system with more than 700 Traffic Laws Questions in 4 different languages</p>
+</div>
+@if (!ViewBag.isLogin)
+{
+    <div class="text-center">
+        <a asp-controller="User" asp-action="SignIn" class="btn btn-primary">SignIn</a>
+        <a asp-controller="User" asp-action="SignUp" class="btn btn-light">SignUp</a>
+    </div>
+}
+

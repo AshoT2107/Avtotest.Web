@@ -1,0 +1,50 @@
+﻿@model Question
+@{
+    ViewData["Title"] = ViewBag.Ticket.Id;
+    var imageUrl = string.IsNullOrEmpty(Model.Image) ? "1.png" : Model.Image + ".png";
+}
+<h1>@ViewBag.Ticket.Id</h1>
+@{
+    var ticket = (Ticket)ViewBag.Ticket;
+    var ticketData = (List<TicketData>)ViewBag.TicketData;
+}
+<div class="text-center">
+    @for (int i = ticket.FromIndex; i < ticket.FromIndex+ticket.QuestionsCount; i++)
+    {
+        var questionIndexModul = i == Model.Id ? "btn btn-primary" : "btn btn-secondary";
+
+        var index = i - ticket.FromIndex + 1;
+        var ticketDataByQuestionId = ticketData.FirstOrDefault(data=>data.QuestionId == i);
+
+        if(ticketDataByQuestionId != null)
+        {
+            questionIndexModul = ticketDataByQuestionId.Answer ? "btn btn-success" : "btn btn-danger";
+        }
+
+        <a class="@questionIndexModul" asp-action="Exam" asp-route-ticketId="@ticket.Id" asp-route-questionId="@i">@index</a>
+    }
+</div>
+<div class="text-center">
+    <img class="w-25 mt-3 mb-3 rounded" src="~/images/@imageUrl" />
+</div>
+@{
+    int questionId = Model.Id - ticket.FromIndex + 1; 
+}
+<h2 class="text-center">@questionId. @Model.QuestionText</h2>
+@{
+    int k = 1;
+}
+@foreach (var choice in Model.Choices!)
+{
+    var modul = "btn btn-primary mb-3";
+    if(choice.Id == ViewBag.ChoiceId)
+    {
+        modul = ViewBag.Answer == true ? "btn btn-success mb-3" : "btn btn-danger mb-3";
+    }
+    <a class=@modul 
+        asp-action="Exam" 
+        asp-route-ticketId="@ticket.Id" 
+        asp-route-questionId="@Model.Id"
+        asp-route-choiceId="@choice.Id">@k. @choice.Text</a><br />
+        k++;
+}

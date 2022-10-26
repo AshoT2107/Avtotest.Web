@@ -1,0 +1,22 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<img class="img img-fluid center-block d-block mx-auto" src="~/Profile/@Model.Image"/><br />
+<div class="text-center">
+    <h1 class="display-4"><b>Name:</b> @Model?.Name</h1>
+    <h1 class="display-4"><b>Phone:</b> @Model?.Phone</h1>
+</div>
+<div class="float-end mb-5">
+    <a class="btn btn-secondary" asp-action="Edit">Edit</a><br/><br/>
+</div>
+
+<style>
+  .img{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 5px;
+  width: 150px;
+}
+</style>

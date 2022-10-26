@@ -1,0 +1,31 @@
+﻿@model User
+
+<h1 class="text-center">User Profile</h1>
+
+<div class="d-flex justify-content-center">
+    <form asp-action="Edit" class="mb-3 w-25" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="Name" class="form-label">Name</label>
+            <input class="form-control" type="text" id="Name" name="Name" placeholder="Name" />
+            
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber" class="form-label">Phone number</label>
+            <input class="form-control" type="text" id="PhoneNumber" name="Phone" placeholder="PhoneNumber" />
+            
+        </div>
+        <div class="form-group">
+            <label for="Password" class="form-label">Password</label>
+            <input class="form-control" type="password" id="Password" name="Password" placeholder="Password" />
+            
+        </div>
+        <div class="form-group">
+            <label for="ImageFile" class="form-label">Image</label>
+            <input class="form-control" type="file" id="ImageFile" name="ImageFile" />
+           
+        </div>
+        <div class="form-group">
+            <input class="form-control btn-primary" type="submit" value="Save Changes" />
+        </div>
+    </form>
+</div>
